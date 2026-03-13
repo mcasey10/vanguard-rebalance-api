@@ -1,0 +1,26 @@
+{
+  "investor_id": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+  "total_proceeds": 10000.00,
+  "total_estimated_tax": 351.59,
+  "effective_tax_rate_on_sale": 0.0352,
+  "recommended_sales": [
+    {
+      "fund_symbol": "VBTLX",
+      "fund_name": "Vanguard Total Bond Market Index Fund",
+      "shares_to_sell": 500.0,
+      "estimated_proceeds": 4925.00,
+      "estimated_tax_impact": 0.00,
+      "tax_savings_vs_fifo": 0.00,
+      "rationale": "2_lt_loss | 500.00 shares @ $9.85 | tax: $0.00"
+    },
+    {
+      "fund_symbol": "VTSAX",
+      "fund_name": "Vanguard Total Stock Market Index Fund",
+      "shares_to_sell": 34.8837,
+      "estimated_proceeds": 5075.00,
+      "estimated_tax_impact": 351.59,
+      "tax_savings_vs_fifo": 1148.41,
+      "rationale": "3_lt_gain | 34.88 shares @ $145.50 | tax: $351.59"
+    }
+  ]
+}

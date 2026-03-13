@@ -1,0 +1,59 @@
+{
+  "investor_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "account_type": "taxable_brokerage",
+  "target_withdrawal_amount": 10000,
+  "federal_tax_bracket": 0.22,
+  "ltcg_tax_rate": 0.15,
+  "holdings": [
+    {
+      "holding_id": "11111111-1111-1111-1111-111111111111",
+      "account_id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "fund_symbol": "VBTLX",
+      "fund_name": "Vanguard Total Bond Market Index",
+      "total_shares": 500,
+      "current_nav": 9.85,
+      "asset_class": "us_bond",
+      "target_allocation_pct": 0.20,
+      "current_allocation_pct": 0.18,
+      "tax_lots": [
+        {
+          "lot_id": "22222222-2222-2222-2222-222222222222",
+          "holding_id": "11111111-1111-1111-1111-111111111111",
+          "purchase_date": "2022-03-15",
+          "shares": 500,
+          "cost_per_share": 11.20,
+          "current_nav": 9.85
+        }
+      ]
+    },
+    {
+      "holding_id": "33333333-3333-3333-3333-333333333333",
+      "account_id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "fund_symbol": "VTSAX",
+      "fund_name": "Vanguard Total Stock Market Index",
+      "total_shares": 200,
+      "current_nav": 145.50,
+      "asset_class": "us_equity",
+      "target_allocation_pct": 0.80,
+      "current_allocation_pct": 0.82,
+      "tax_lots": [
+        {
+          "lot_id": "55555555-5555-5555-5555-555555555555",
+          "holding_id": "33333333-3333-3333-3333-333333333333",
+          "purchase_date": "2025-06-01",
+          "shares": 50,
+          "cost_per_share": 132.00,
+          "current_nav": 145.50
+        },
+        {
+          "lot_id": "44444444-4444-4444-4444-444444444444",
+          "holding_id": "33333333-3333-3333-3333-333333333333",
+          "purchase_date": "2019-06-01",
+          "shares": 150,
+          "cost_per_share": 78.30,
+          "current_nav": 145.50
+        }
+      ]
+    }
+  ]
+}

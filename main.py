@@ -4,6 +4,11 @@ from models import (SellRequest, SellRecommendation, RecommendedFundSale,
                     ScenarioTaxImpact, ManualFundSale)
 from datetime import date
 from typing import List
+import anthropic
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(title="Vanguard Sell & Rebalance API", version="0.1.0")
 
@@ -327,3 +332,39 @@ def calculate_scenario(request: ManualScenarioRequest):
         effective_tax_rate_on_sale=round(effective_rate, 4),
         fund_impacts=fund_impacts
     )
+
+@app.post("/explain")
+def explain_recommendation(recommendation: SellRecommendation):
+    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+    sales_summary = "\n".join([
+        f"- {s.fund_name} ({s.fund_symbol}): sell {s.shares_to_sell} shares, "
+        f"${s.estimated_proceeds:,.2f} proceeds, ${s.estimated_tax_impact:,.2f} estimated tax, "
+        f"${s.tax_savings_vs_fifo:,.2f} saved vs FIFO. Rationale: {s.rationale}"
+        for s in recommendation.recommended_sales
+    ])
+
+    prompt = f"""You are a helpful financial assistant explaining a tax-optimized sell recommendation to a Vanguard investor.
+
+Here is the recommendation:
+- Total proceeds: ${recommendation.total_proceeds:,.2f}
+- Total estimated tax: ${recommendation.total_estimated_tax:,.2f}
+- Effective tax rate on this sale: {recommendation.effective_tax_rate_on_sale * 100:.1f}%
+
+Fund-level breakdown:
+{sales_summary}
+
+Write a clear, friendly 3-4 sentence explanation a non-expert investor would understand. 
+Explain why these specific funds and lots were chosen, what the tax benefit is, and what the effective rate means in plain terms.
+Do not use technical jargon like 'tax lots' or 'FIFO' — translate everything into plain English."""
+
+    message = client.messages.create(
+        model="claude-sonnet-4-5-20251101",
+        max_tokens=1024,
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    return {
+        "investor_id": recommendation.investor_id,
+        "explanation": message.content[0].text
+    }
