@@ -1,3 +1,12 @@
+---
+title: Vanguard Rebalance API
+emoji: ⚡
+colorFrom: red
+colorTo: gray
+sdk: docker
+pinned: false
+---
+
 # Vanguard Sell & Rebalance API
 
 A FastAPI backend that solves a real gap in Vanguard's existing product: no tax-consequence reasoning when selling mutual fund holdings. Built as a portfolio project demonstrating Python, API design, and AI integration.
