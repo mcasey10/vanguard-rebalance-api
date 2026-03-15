@@ -12,3 +12,6 @@ dist/
 build/
 .venv/
 venv/
+
+# Large media files
+*.mp4
